@@ -4,7 +4,7 @@
 #include "Game.h"
 
 int main(int argc, char** argv) {
-
+	SDL_SetHint(SDL_HINT_APP_NAME, "Flappy Windows");
 	Game game = Game();
 	if (!game.Init()) {
 		return -1;

@@ -48,6 +48,8 @@ Pipe::Pipe(Game* game, float middleHight, float holeDistance)
 	SDL_Texture* pipeTextures[2] = {
 	IMG_LoadTexture(pipeRendererTop, "textures/LongPipe.png"),
 	IMG_LoadTexture(pipeRendererBottom, "textures/LongPipe.png") };
+	SDL_SetTextureScaleMode(pipeTextures[0], SDL_SCALEMODE_NEAREST);
+	SDL_SetTextureScaleMode(pipeTextures[1], SDL_SCALEMODE_NEAREST);
 
 	SDL_FRect topSquare = { 0, 0, w, pipeTextures[0]->h * (h / 100) };
 	SDL_FRect bottomSquare = { 0, 0, w, pipeTextures[1]->h * (h / 100) };

@@ -23,6 +23,7 @@ bool Game::Init() {
 	//Rendering Prep
 	birdRenderer = SDL_CreateRenderer(bird->window, NULL);
 	birdTexture = IMG_LoadTexture(birdRenderer, "textures/Bird.png");
+	SDL_SetTextureScaleMode(birdTexture, SDL_SCALEMODE_NEAREST);
 
 	running = true;
 	return true;
