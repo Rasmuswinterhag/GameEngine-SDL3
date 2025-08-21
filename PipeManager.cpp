@@ -20,36 +20,36 @@ void PipeManager::Tick()
 	}
 
 
-	for (auto it = pipes.begin(); it != pipes.end(); )
+	for (Pipe* currentPipe : pipes)
 	{
-		if (it->middlePos.x > -9)
+		if (currentPipe->middlePos.x > -9)
 		{
-			it->Tick();
-			++it;
+			currentPipe->Tick();
 		}
 		else
 		{
 			//TODO: not deactivation that fucks everything up
-    		it->DeactivateWindow();
+			currentPipe->DeactivateWindow();
 		}
 	}
 }
 
-Pipe PipeManager::RequestPipe(float height)
+Pipe* PipeManager::RequestPipe(float height)
 {
-	for (Pipe currentPipe : pipes)
+	for (Pipe* currentPipe : pipes)
 	{
- 		if (!currentPipe.active)
+		if (!currentPipe->active)
 		{
 			std::cout << "reuse" << '\n';
-			currentPipe.middlePos = Vector2(-9, height);
-			currentPipe.ActivateWindow();
+			currentPipe->ActivateWindow();
+			currentPipe->ResetPipe(height);
 			return currentPipe;
 		}
 	}
 	std::cout << "spawn new" << '\n';
-	Pipe newPipe = Pipe(game, height);
-	newPipe.ActivateWindow();
+	Pipe* newPipe = new Pipe(game, height);
+	newPipe->ActivateWindow();
+	newPipe->ResetPipe(height);
 	pipes.emplace_back(newPipe);
 	return newPipe;
 	//return NULL;

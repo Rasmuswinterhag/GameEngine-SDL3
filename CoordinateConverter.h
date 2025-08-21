@@ -13,7 +13,7 @@ public:
 	static int ToScreenSpace(int WorldSpace);
 
 	static Vector2 ToWorldSpace(Vector2Int ScreenSpace);
-	static float ToWorldSpace(int ScreenSpace);
+	static float SizeToWorld(int screenSize);
 
 	static void SetWindowWorldPosition(SDL_Window* window, Vector2 worldPosition);
 	

@@ -74,7 +74,7 @@ void Game::Render() {
 
 	//Render Bird
 	SDL_FRect square = { 0, 0, 100, 100 };
-	float birdAngle = -bird->velocity * 10;
+	float birdAngle = -bird->velocity * 15;
 	if (birdAngle > 90) { birdAngle = 90; }
 	SDL_RenderTextureRotated(birdRenderer, birdTexture, NULL, &square, birdAngle, NULL, SDL_FLIP_NONE);
 	SDL_RenderPresent(birdRenderer);

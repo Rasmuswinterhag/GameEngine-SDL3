@@ -8,7 +8,18 @@ void Bird::Tick()
 	SDL_PumpEvents();
 
 	velocity += gravity * game->fdata.deltaTime;
-	if (keys[SDL_SCANCODE_SPACE] && !flapped) { velocity = 2; flapped = true; }
+	if (keys[SDL_SCANCODE_SPACE] && !flapped) {
+		if (velocity < 0)
+		{
+			velocity = flapPower;
+		}
+		else
+		{
+			velocity += flapPower * 0.75;
+		}
+		if (velocity > maxVelocity) { velocity = maxVelocity; }
+		flapped = true;
+	}
 	if (!keys[SDL_SCANCODE_SPACE]) { flapped = false; }
 	position->y += velocity * game->fdata.deltaTime;
 

@@ -21,9 +21,9 @@
 		);
 	}
 
-	float CoordinateConverter::ToWorldSpace(int ScreenSpace)
+	float CoordinateConverter::SizeToWorld(int screenSize)
 	{
-		return Lerp(-worldWidth / 2, worldWidth / 2, InverseLerp(0, screenWidth, ScreenSpace));
+		return (float)screenSize / screenWidth * worldWidth;
 	}
 
 

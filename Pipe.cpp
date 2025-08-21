@@ -18,7 +18,7 @@ void Pipe::Move()
 
 	if (SDL_GetWindowSizeInPixels(topPipe, NULL, topPipeHeight))
 	{
-		topPipePos = new Vector2(middlePos.x, middlePos.y + holeDistance - CoordinateConverter::ToWorldSpace(h));
+		topPipePos = new Vector2(middlePos.x, middlePos.y + holeDistance + CoordinateConverter::SizeToWorld(h));
 	}
 	CoordinateConverter::SetWindowWorldPosition(topPipe, *(topPipePos));
 
@@ -35,7 +35,8 @@ Pipe::Pipe(Game* game, float middleHight, float holeDistance)
 	bottomPipe = SDL_CreateWindow("Pipe", pipeSize.x, pipeSize.y, 0);
 	pipeRendererBottom = SDL_CreateRenderer(bottomPipe, NULL);
 	middlePos.y = middleHight;
-	this->holeDistance = holeDistance;
+
+	if (holeDistance > 0) { this->holeDistance = holeDistance; }
 
 	//Rendering
 	int w = 0;
@@ -60,9 +61,21 @@ Pipe::Pipe(Game* game, float middleHight, float holeDistance)
 void Pipe::DeactivateWindow()
 {
 	active = false;
+	SDL_HideWindow(topPipe);
+	SDL_HideWindow(bottomPipe);
 }
 
 void Pipe::ActivateWindow()
 {
 	active = true;
+	SDL_ShowWindow(topPipe);
+	SDL_ShowWindow(bottomPipe);
+}
+
+void Pipe::ResetPipe(float middleHight, float holeDistance)
+{
+	middlePos.x = startPos.x;
+	middlePos.y = middleHight;
+	if (holeDistance > 0) { this->holeDistance = holeDistance; }
+	hasScored = false;
 }

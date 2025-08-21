@@ -5,8 +5,10 @@
 
 class Bird
 {	
-	float gravity = -4;
+	float gravity = -10;
 	bool flapped = false;
+	float flapPower = 4;
+	float maxVelocity = 6;
 
 public:
 	Game* game;
