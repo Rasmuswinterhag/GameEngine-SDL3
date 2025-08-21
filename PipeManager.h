@@ -14,5 +14,6 @@ public:
 	Game* game;
 	void Tick();
 	PipeManager(Game* game);
+	Pipe RequestPipe(float height);
 	std::list<Pipe> pipes;
 };

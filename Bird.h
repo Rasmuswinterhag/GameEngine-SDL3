@@ -5,7 +5,7 @@
 
 class Bird
 {	
-	float gravity = -20;
+	float gravity = -4;
 	bool flapped = false;
 
 public:

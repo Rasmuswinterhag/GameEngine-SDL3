@@ -8,12 +8,11 @@ void Bird::Tick()
 	SDL_PumpEvents();
 
 	velocity += gravity * game->fdata.deltaTime;
-	if (keys[SDL_SCANCODE_SPACE] && !flapped) { velocity = 5; flapped = true; }
+	if (keys[SDL_SCANCODE_SPACE] && !flapped) { velocity = 2; flapped = true; }
 	if (!keys[SDL_SCANCODE_SPACE]) { flapped = false; }
 	position->y += velocity * game->fdata.deltaTime;
 
 	CoordinateConverter::SetWindowWorldPosition(window, *(position));
-	std::cout << position->x << "\n";
 }
 
 Bird::Bird(Game* game)

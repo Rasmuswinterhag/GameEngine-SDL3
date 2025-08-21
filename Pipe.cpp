@@ -2,26 +2,28 @@
 #include "CoordinateConverter.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_image.h>
+#include <iostream>
 
 void Pipe::Tick()
 {
-	const bool* keys = SDL_GetKeyboardState(NULL);
-	SDL_PumpEvents();
+	if (active) { Move(); }
+}
 
+void Pipe::Move()
+{
 	middlePos.x += speed * game->fdata.deltaTime;
+
 	int h = 0;
 	int* topPipeHeight = &h;
 
 	if (SDL_GetWindowSizeInPixels(topPipe, NULL, topPipeHeight))
 	{
-   		topPipePos = new Vector2(middlePos.x, middlePos.y + holeDistance - CoordinateConverter::ToWorldSpace(h));
+		topPipePos = new Vector2(middlePos.x, middlePos.y + holeDistance - CoordinateConverter::ToWorldSpace(h));
 	}
 	CoordinateConverter::SetWindowWorldPosition(topPipe, *(topPipePos));
 
 	bottomPipePos = new Vector2(middlePos.x, middlePos.y - holeDistance);
 	CoordinateConverter::SetWindowWorldPosition(bottomPipe, *(bottomPipePos));
-
-	
 }
 
 Pipe::Pipe(Game* game, float middleHight, float holeDistance)
@@ -55,9 +57,12 @@ Pipe::Pipe(Game* game, float middleHight, float holeDistance)
 	SDL_RenderPresent(pipeRendererBottom);
 }
 
-const void Pipe::DestroyWindows()
+void Pipe::DeactivateWindow()
 {
-	//TODO: Remove windows and the instance of the pipe class
-	SDL_DestroyWindow(topPipe);
-	SDL_DestroyWindow(bottomPipe);
+	active = false;
+}
+
+void Pipe::ActivateWindow()
+{
+	active = true;
 }

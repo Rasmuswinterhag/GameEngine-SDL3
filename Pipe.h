@@ -6,6 +6,7 @@
 class Pipe
 {
 public:
+	bool active = true;
 	bool hasScored = false;
 	Vector2 pipeSize = Vector2(200, 800);
 	Vector2 middlePos = Vector2(9, 0);
@@ -15,12 +16,14 @@ public:
 	SDL_Window* bottomPipe;
 	SDL_Renderer* pipeRendererTop;
 	SDL_Renderer* pipeRendererBottom;
-	float speed = -10;
+	float speed = -5;
 	float holeDistance = 2;
 	Game* game;
 	
 
 	void Tick();
+	void Move();
 	Pipe(Game* game, float middleHight = 0, float holeDistance = 2);
-	const void DestroyWindows();
+	void DeactivateWindow();
+	void ActivateWindow();
 };

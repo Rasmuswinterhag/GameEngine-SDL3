@@ -1,9 +1,9 @@
 #pragma once
 #include <SDL3/SDL.h>
 #include "CoordinateConverter.h"
-#include "Bird.h"
-#include "PipeManager.h"
-#include "ScoreManager.h"
+class Bird;
+class PipeManager;
+class ScoreManager;
 
 class Game
 {

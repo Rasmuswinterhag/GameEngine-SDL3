@@ -2,6 +2,9 @@
 #include <SDL3/SDL_image.h>
 #include <iostream>
 #include "Game.h"
+#include "Bird.h"
+#include "PipeManager.h"
+#include "ScoreManager.h"
 
 Game::Game() {}
 Game::~Game() {}
@@ -69,6 +72,7 @@ void Game::Render() {
 	//Rendering
 	SDL_RenderClear(birdRenderer);
 
+	//Render Bird
 	SDL_FRect square = { 0, 0, 100, 100 };
 	float birdAngle = -bird->velocity * 10;
 	if (birdAngle > 90) { birdAngle = 90; }
@@ -77,6 +81,7 @@ void Game::Render() {
 }
 
 void Game::Quit() {
+	std::cerr << "Quit Game" << "\n";
 	SDL_DestroyWindow(bird->window);
 	SDL_Quit();
 }
