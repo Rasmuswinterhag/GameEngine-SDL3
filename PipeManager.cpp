@@ -11,6 +11,21 @@ PipeManager::PipeManager(Game* game)
 
 void PipeManager::Tick()
 {
+	switch (game->gameState)
+	{
+	case Game::GameState::Start:
+		break;
+	case Game::GameState::Playing:
+		SpawnTimer();
+		TickPipes();
+		break;
+	case Game::GameState::Dead:
+		break;
+	}
+}
+
+void PipeManager::SpawnTimer()
+{
 	timer += game->fdata.deltaTime;
 	if (timer > spawnRate)
 	{
@@ -18,8 +33,10 @@ void PipeManager::Tick()
 		RequestPipe(randomHeight);
 		timer = 0;
 	}
+}
 
-
+void PipeManager::TickPipes()
+{
 	for (Pipe* currentPipe : pipes)
 	{
 		if (currentPipe->middlePos.x > -9)
@@ -40,13 +57,11 @@ Pipe* PipeManager::RequestPipe(float height)
 	{
 		if (!currentPipe->active)
 		{
-			std::cout << "reuse" << '\n';
 			currentPipe->ActivateWindow();
 			currentPipe->ResetPipe(height);
 			return currentPipe;
 		}
 	}
-	std::cout << "spawn new" << '\n';
 	Pipe* newPipe = new Pipe(game, height);
 	newPipe->ActivateWindow();
 	newPipe->ResetPipe(height);

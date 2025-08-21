@@ -44,6 +44,7 @@ void Game::HandleEvents() {
 }
 
 void Game::Update() {
+	//std::cout << gameState << "\n";
 	Uint64 now = SDL_GetTicks();
 	fdata.deltaTime = (now - fdata.lastTime) / 1000.0f; //seconds
 	fdata.lastTime = now;
@@ -85,5 +86,10 @@ void Game::Quit() {
 	std::cerr << "Quit Game" << "\n";
 	SDL_DestroyWindow(bird->window);
 	SDL_Quit();
+}
+
+void Game::SetGameState(GameState newState)
+{
+	gameState = newState;
 }
 

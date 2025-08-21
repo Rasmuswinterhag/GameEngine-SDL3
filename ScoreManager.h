@@ -8,6 +8,7 @@ class ScoreManager
 {
 	Bird* bird;
 	PipeManager* pipeManager;
+	Game* game;
 
 public:
 	SDL_Window* scoreWindow;
@@ -15,4 +16,7 @@ public:
 	void AddScore(int value);
 	ScoreManager(Game* game, Bird* bird, PipeManager* pipeManager);
 	void Tick();
+	void Start();
+	void Playing();
+	void Dead();
 };

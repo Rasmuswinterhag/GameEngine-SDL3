@@ -79,5 +79,5 @@ void Pipe::ResetPipe(float middleHight, float holeDistance)
 	middlePos.x = startPos.x;
 	middlePos.y = middleHight;
 	if (holeDistance > 0) { this->holeDistance = holeDistance; }
-	hasScored = false;
+	hasBeenHit = false;
 }

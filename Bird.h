@@ -17,5 +17,8 @@ public:
 	float velocity;
 
 	void Tick();
+	void Start();
+	void Playing();
+	void Dead();
 	Bird(Game* game);
 };

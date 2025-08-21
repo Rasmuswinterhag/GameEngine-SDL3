@@ -7,8 +7,9 @@ class ScoreManager;
 
 class Game
 {
-	
-	struct FrameData {
+	bool tmp;
+	struct FrameData
+	{
 		int framecnt = 0;
 		const Uint32 frameDelay = 1000 / 60;
 		Uint32 frameStart = 0;
@@ -21,6 +22,13 @@ class Game
 	};
 
 public:
+	enum GameState
+	{
+		Start,
+		Playing,
+		Dead,
+	};
+
 	Game();
 	~Game();
 	bool Init();
@@ -28,9 +36,11 @@ public:
 	void Update();
 	void Render();
 	void Quit();
+	void SetGameState(Game::GameState newState);
 
 	bool running;
 	FrameData fdata;
+	GameState gameState;
 
 	Bird* bird;
 	SDL_Renderer* birdRenderer;

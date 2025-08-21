@@ -9,8 +9,8 @@ class Pipe
 public:
 	float holeDistance = 1; //this is the default hole distance, can be overridden when spawning in/resetting
 	bool active = true;
-	bool hasScored = false;
-	Vector2 pipeSize = Vector2(200, 800);
+	bool hasBeenHit = false;
+	Vector2 pipeSize = Vector2(200, 1600);
 	Vector2 middlePos = Vector2(0, 0);
 	Vector2* topPipePos;
 	Vector2* bottomPipePos;
