@@ -1,5 +1,18 @@
 #include "CoordinateConverter.h"
 
+int CoordinateConverter::screenWidth = 0;
+int CoordinateConverter::screenHeight = 0;
+
+CoordinateConverter::CoordinateConverter()
+{
+	SDL_DisplayID display = SDL_GetPrimaryDisplay();
+	SDL_Rect bounds;
+	SDL_GetDisplayBounds(display, &bounds);
+
+	screenWidth = bounds.w;
+	screenHeight = bounds.h;
+}
+
 Vector2Int CoordinateConverter::ToScreenSpace(Vector2 WorldSpace)
 {
 	return Vector2Int(
@@ -44,8 +57,8 @@ void CoordinateConverter::SetWindowWorldPositionCentered(SDL_Window* window, Vec
 	int* height = &h;
 	int w = 0;
 	int* width = &w;
-
 	SDL_GetWindowSizeInPixels(window, width, height);
+
 	Vector2Int* screenPos = new Vector2Int(ToScreenSpace(worldPosition));
 	screenPos->x -= *width / 2;
 	screenPos->y -= *height / 2;

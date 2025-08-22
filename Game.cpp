@@ -13,6 +13,7 @@ bool Game::Init() {
 	}
 
 	//Create Game Objects
+	CoordinateConverter* CC = new CoordinateConverter(); delete CC; CC = nullptr;
 	bird = new Bird(this);
 	pipeManager = new PipeManager(this);
 	scoreManager = new HitManager(this, bird, pipeManager);

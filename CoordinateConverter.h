@@ -1,11 +1,12 @@
 #pragma once
 #include "Vector2.h"
 #include <SDL3/SDL.h>
-static class CoordinateConverter
+class CoordinateConverter
 {
 public:
-	static const int screenWidth = 2560; //TODO: Get the height instead of hard code
-	static const int screenHeight = 1600; //TODO: Get the height instead of hard code
+	CoordinateConverter();
+	static int screenWidth;
+	static int screenHeight;
 	static constexpr float worldWidth = 16;
 	static constexpr float worldHeight = 10;
 

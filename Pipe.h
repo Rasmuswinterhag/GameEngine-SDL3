@@ -7,7 +7,7 @@ class Pipe
 {
 	Vector2 startPos = Vector2(9, 0);
 public:
-	float holeDistance = 1; //this is the default hole distance, can be overridden when spawning in/resetting
+	float holeDistance = 1.5; //this is the default hole distance, can be overridden when spawning in/resetting
 	bool active = true;
 	bool hasBeenHit = false;
 	Vector2 pipeSize = Vector2(200, 1600);
