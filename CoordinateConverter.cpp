@@ -21,9 +21,14 @@
 		);
 	}
 
-	float CoordinateConverter::SizeToWorld(int screenSize)
+	float CoordinateConverter::SizeToWorldHorizontal(int screenSize)
 	{
 		return (float)screenSize / screenWidth * worldWidth;
+	}
+
+	float CoordinateConverter::SizeToWorldVertical(int screenSize)
+	{
+		return (float)screenSize / screenHeight * worldHeight;
 	}
 
 

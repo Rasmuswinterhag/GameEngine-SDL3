@@ -3,7 +3,7 @@
 #include "CoordinateConverter.h"
 class Bird;
 class PipeManager;
-class ScoreManager;
+class HitManager;
 
 class Game
 {
@@ -29,8 +29,8 @@ public:
 		Dead,
 	};
 
-	Game();
-	~Game();
+	Game() = default;
+	~Game() = default;
 	bool Init();
 	void HandleEvents();
 	void Update();
@@ -46,5 +46,5 @@ public:
 	SDL_Renderer* birdRenderer;
 	SDL_Texture* birdTexture;
 	PipeManager* pipeManager;
-	ScoreManager* scoreManager;
+	HitManager* scoreManager;
 };

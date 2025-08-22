@@ -18,7 +18,7 @@ void Pipe::Move()
 
 	if (SDL_GetWindowSizeInPixels(topPipe, NULL, topPipeHeight))
 	{
-		topPipePos = new Vector2(middlePos.x, middlePos.y + holeDistance + CoordinateConverter::SizeToWorld(h));
+		topPipePos = new Vector2(middlePos.x, middlePos.y + holeDistance + CoordinateConverter::SizeToWorldHorizontal(h));
 	}
 	CoordinateConverter::SetWindowWorldPosition(topPipe, *(topPipePos));
 

@@ -33,7 +33,7 @@
     <ClCompile Include="PipeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreManager.cpp">
+    <ClCompile Include="HitManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -56,7 +56,7 @@
     <ClInclude Include="PipeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreManager.h">
+    <ClInclude Include="HitManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">

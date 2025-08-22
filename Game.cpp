@@ -4,10 +4,7 @@
 #include "Game.h"
 #include "Bird.h"
 #include "PipeManager.h"
-#include "ScoreManager.h"
-
-Game::Game() {}
-Game::~Game() {}
+#include "HitManager.h"
 
 bool Game::Init() {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMEPAD) == 0) {
@@ -18,7 +15,7 @@ bool Game::Init() {
 	//Create Game Objects
 	bird = new Bird(this);
 	pipeManager = new PipeManager(this);
-	scoreManager = new ScoreManager(this, bird, pipeManager);
+	scoreManager = new HitManager(this, bird, pipeManager);
 
 	//Rendering Prep
 	birdRenderer = SDL_CreateRenderer(bird->window, NULL);

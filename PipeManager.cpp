@@ -58,7 +58,6 @@ void PipeManager::TickPipes()
 		}
 		else
 		{
-			//TODO: not deactivation that fucks everything up
 			currentPipe->DeactivateWindow();
 		}
 	}

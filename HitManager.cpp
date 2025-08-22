@@ -1,10 +1,11 @@
-#include "ScoreManager.h"
+#include "HitManager.h"
 #include "CoordinateConverter.h"
+#include "PipeManager.h"
 #include <string>
 #include <iostream>
 #include <format>
 
-ScoreManager::ScoreManager(Game* game, Bird* bird, PipeManager* pipeManager)
+HitManager::HitManager(Game* game, Bird* bird, PipeManager* pipeManager)
 {
 	this->game = game;
 	this->bird = bird;
@@ -15,7 +16,7 @@ ScoreManager::ScoreManager(Game* game, Bird* bird, PipeManager* pipeManager)
 	CoordinateConverter::SetWindowWorldPosition(scoreWindow, CoordinateConverter::ToWorldSpace(Vector2Int(CoordinateConverter::screenWidth * 0.425, 50)));
 }
 
-void ScoreManager::Tick()
+void HitManager::Tick()
 {
 	switch (game->gameState)
 	{
@@ -31,18 +32,18 @@ void ScoreManager::Tick()
 	}
 }
 
-void ScoreManager::Start() //TODO: optimise to have a function that only runs once
+void HitManager::Start() //TODO: optimise to have a function that only runs once
 {
 	SetScore(0);
 }
 
-void ScoreManager::Playing() //TODO: Improve kill hitboxes
+void HitManager::Playing()
 {
 	for (Pipe* p : pipeManager->pipes)
 	{
 		if (!p->hasBeenHit && //Score hitbox
 			bird->position->x >= p->middlePos.x &&
-			bird->position->x <= p->middlePos.x + CoordinateConverter::SizeToWorld(p->pipeSize.x) &&
+			bird->position->x <= p->middlePos.x + CoordinateConverter::SizeToWorldHorizontal(p->pipeSize.x) &&
 			bird->position->y >= p->middlePos.y - p->holeDistance &&
 			bird->position->y <= p->middlePos.y + p->holeDistance)
 		{
@@ -53,9 +54,9 @@ void ScoreManager::Playing() //TODO: Improve kill hitboxes
 		}
 		else if (!p->hasBeenHit && //top pipe Hitbox
 			bird->position->x >= p->topPipePos->x &&
-			bird->position->x <= p->topPipePos->x + CoordinateConverter::SizeToWorld(p->pipeSize.x) &&
+			bird->position->x <= p->topPipePos->x + CoordinateConverter::SizeToWorldHorizontal(p->pipeSize.x) &&
 			bird->position->y <= p->topPipePos->y &&
-			bird->position->y >= p->topPipePos->y - CoordinateConverter::SizeToWorld(p->pipeSize.y))
+			bird->position->y >= p->topPipePos->y - CoordinateConverter::SizeToWorldVertical(p->pipeSize.y))
 		{
 			std::cout << "Hit the top" << '\n';
 			p->hasBeenHit = true;
@@ -63,9 +64,9 @@ void ScoreManager::Playing() //TODO: Improve kill hitboxes
 		}
 		else if (!p->hasBeenHit && //bottom pipe Hitbox
 			bird->position->x >= p->bottomPipePos->x &&
-			bird->position->x <= p->bottomPipePos->x + CoordinateConverter::SizeToWorld(p->pipeSize.x) &&
+			bird->position->x <= p->bottomPipePos->x + CoordinateConverter::SizeToWorldHorizontal(p->pipeSize.x) &&
 			bird->position->y <= p->bottomPipePos->y &&
-			bird->position->y >= p->bottomPipePos->y - CoordinateConverter::SizeToWorld(p->pipeSize.y))
+			bird->position->y >= p->bottomPipePos->y - CoordinateConverter::SizeToWorldVertical(p->pipeSize.y))
 		{
 			std::cout << "Hit the bottom" << '\n';
 			p->hasBeenHit = true;
@@ -73,18 +74,18 @@ void ScoreManager::Playing() //TODO: Improve kill hitboxes
 		}
 	}
 }
-void ScoreManager::Dead()
+void HitManager::Dead()
 {
 
 }
 
-void ScoreManager::AddScore(int value)
+void HitManager::AddScore(int value)
 {
 	score += value;
 	SDL_SetWindowTitle(scoreWindow, std::format("Score: {}", score).c_str());
 }
 
-void ScoreManager::SetScore(int value)
+void HitManager::SetScore(int value)
 {
 	score = value;
 	SDL_SetWindowTitle(scoreWindow, std::format("Score: {}", score).c_str());
