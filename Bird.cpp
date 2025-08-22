@@ -30,7 +30,7 @@ void Bird::Start()
 		std::cout << "Play" << '\n';
 	}
 
-	CoordinateConverter::SetWindowWorldPosition(window, *(position)); //TODO: Move the position to be in the center of the window
+	CoordinateConverter::SetWindowWorldPositionCentered(window, *(position));
 }
 
 void Bird::Playing()
@@ -63,7 +63,7 @@ void Bird::Playing()
 	}
 
 	position->y += velocity * game->fdata.deltaTime;
-	CoordinateConverter::SetWindowWorldPosition(window, *(position));
+	CoordinateConverter::SetWindowWorldPositionCentered(window, *(position));
 }
 
 void Bird::Dead()
