@@ -44,7 +44,6 @@ void Game::HandleEvents() {
 }
 
 void Game::Update() {
-	//std::cout << gameState << "\n";
 	Uint64 now = SDL_GetTicks();
 	fdata.deltaTime = (now - fdata.lastTime) / 1000.0f; //seconds
 	fdata.lastTime = now;
@@ -91,5 +90,15 @@ void Game::Quit() {
 void Game::SetGameState(GameState newState)
 {
 	gameState = newState;
+
+	switch (gameState)
+	{
+	case Game::GameState::Start:
+		break;
+	case Game::GameState::Playing:
+		break;
+	case Game::GameState::Dead:
+		break;
+	}
 }
 

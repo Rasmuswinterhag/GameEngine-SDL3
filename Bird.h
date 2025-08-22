@@ -14,7 +14,7 @@ public:
 	Game* game;
 	SDL_Window* window;
 	Vector2* position = new Vector2(-5, 0);
-	float velocity;
+	float velocity = 0;
 
 	void Tick();
 	void Start();

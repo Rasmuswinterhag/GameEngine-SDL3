@@ -14,6 +14,7 @@ public:
 	SDL_Window* scoreWindow;
 	int score = 0;
 	void AddScore(int value);
+	void SetScore(int value);
 	ScoreManager(Game* game, Bird* bird, PipeManager* pipeManager);
 	void Tick();
 	void Start();

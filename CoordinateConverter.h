@@ -4,10 +4,10 @@
 static class CoordinateConverter
 {
 public:
-	static constexpr float worldWidth = 16; //TODO: Get aspect ratio instead of hard code
-	static constexpr float worldHeight = 9; //TODO: Get aspect ratio instead of hard code
 	static const int screenWidth = 2560; //TODO: Get the height instead of hard code
 	static const int screenHeight = 1600; //TODO: Get the height instead of hard code
+	static constexpr float worldWidth = 16; //TODO: Get aspect ratio instead of hard code
+	static constexpr float worldHeight = 9; //TODO: Get aspect ratio instead of hard code
 
 	static Vector2Int ToScreenSpace(Vector2 WorldSpace);
 	static int ToScreenSpace(int WorldSpace);

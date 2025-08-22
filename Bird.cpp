@@ -20,14 +20,17 @@ void Bird::Tick()
 
 void Bird::Start()
 {
+	position->y = 0; //TODO: optimise to have a function that only runs once
+	velocity = 0; //TODO: optimise to have a function that only runs once
 	const bool* keys = SDL_GetKeyboardState(NULL);
 	SDL_PumpEvents();
 	if (keys[SDL_SCANCODE_SPACE])
 	{
 		game->SetGameState(Game::GameState::Playing);
+		std::cout << "Play" << '\n';
 	}
 
-	CoordinateConverter::SetWindowWorldPosition(window, *(position));
+	CoordinateConverter::SetWindowWorldPosition(window, *(position)); //TODO: Move the position to be in the center of the window
 }
 
 void Bird::Playing()
@@ -48,14 +51,30 @@ void Bird::Playing()
 		flapped = true;
 	}
 	if (!keys[SDL_SCANCODE_SPACE]) { flapped = false; }
-	position->y += velocity * game->fdata.deltaTime;
 
+	if (position->y > CoordinateConverter::worldHeight/2) //Ceiling handling
+	{
+ 		velocity = 0;
+		position->y = CoordinateConverter::worldHeight / 2;
+	}
+	else if (position->y < -CoordinateConverter::worldHeight / 2) //Floor handling
+	{
+		game->SetGameState(Game::GameState::Dead);
+	}
+
+	position->y += velocity * game->fdata.deltaTime;
 	CoordinateConverter::SetWindowWorldPosition(window, *(position));
 }
 
 void Bird::Dead()
 {
-
+	const bool* keys = SDL_GetKeyboardState(NULL);
+	SDL_PumpEvents();
+	if (keys[SDL_SCANCODE_SPACE])
+	{
+		game->SetGameState(Game::GameState::Start);
+		std::cout << "Restart" << '\n';
+	}
 }
 
 Bird::Bird(Game* game)

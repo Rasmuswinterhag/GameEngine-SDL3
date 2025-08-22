@@ -70,6 +70,7 @@ void Pipe::DeactivateWindow()
 void Pipe::ActivateWindow()
 {
 	active = true;
+	Move();
 	SDL_ShowWindow(topPipe);
 	SDL_ShowWindow(bottomPipe);
 }
